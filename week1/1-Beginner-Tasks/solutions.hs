@@ -200,3 +200,46 @@ fibonaccis (x:xs) = fib x 1 0 : fibonaccis xs
                                          | otherwise = fib (i-1) (val+prev) val
 
 --42. Take a function and apply it to all elements of a list
+applyToAll :: (a -> b) -> [a] -> [b]
+applyToAll _ [] = []
+applyToAll f (x:xs) = f x : applyToAll f xs
+
+--43. Rewrite all of the above functions to use applyToAll
+
+--44. Get all odd numbers in a list
+odds :: (Integral a) => [a] -> [a]
+odds [] = []
+odds (x:xs) | mod x 2 == 1 = x : odds xs
+            | otherwise = odds xs
+
+--45. Return a function that filters all the numbers in a list divisible by 'n'
+divisibles :: (Integral a) => a -> [a] -> [a]
+divisibles _ [] = []
+divisibles n (x:xs) | x `mod` n == 0 = x : divisibles n xs
+                    | otherwise = divisibles n xs
+
+--46. Take a predicate and filter a list
+filterBy :: (a-> Bool) -> [a] -> [a]
+filterBy _ [] = []
+filterBy p (x:xs) | p x = x : filter p xs
+                  | otherwise = filter p xs
+
+--47. Rewrite all the functions using filterBy
+-- Some other time :D
+
+--48. Concatenate the lists
+concat' :: [[a]] -> [a]
+concat' (_:[]) = []
+concat' (x:xs) = x ++ concat xs
+
+--49. Reducing
+-- ???
+
+--50. Reduce in the other direction
+-- ???
+
+--51. Zip with a function
+-- NOT WORKING
+zipWith' _ _ [] = []
+zipWith' _ [] _ = []
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
