@@ -45,16 +45,18 @@ filterFilter p (x:xs) = filter p x : filterFilter p xs
 filterFilter _ _ = []
 
 --10. Generate the unit matrix by given element and dimensions
--- unit :: Int -> Int -> [[Int]]
--- unit ele dim =
-
-
+unit :: (Enum a, Num a) => a -> Int -> [[a]]
+unit elem dim = map f [0..dim-1]
+	where f pos = (take pos [0, 0..]) ++ [elem] ++ (take (dim-pos-1) [0, 0..])
 
 --11. Get the nth row and column of a matrix
 
 --12. Transpose a matrix
 
 --13. Sum of matrices
+
+sumMatrices (x:xs) (y:ys) = zipWith (+) x y : sumMatrices xs ys
+sumMatrices _ _ = []
 
 --14. Multiply matrices
 
