@@ -1,6 +1,11 @@
 --01. Map as foldl
+mapAsFoldl :: (a -> b) -> [a] -> [b]
+mapAsFoldl f xs = foldl (\acc x -> acc ++ [f x]) [] xs
 
 --02. Filter as foldl
+--filterAsFoldl :: (a -> b) -> [a] -> [b]
+filterAsFoldl f xs = foldl p [] xs
+                     where p = \acc x -> if f x then acc ++ [x] else acc
 
 --03. Quicksort
 quicksort :: Ord a => [a] -> [a]
