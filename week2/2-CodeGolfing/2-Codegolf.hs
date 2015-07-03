@@ -1,12 +1,6 @@
 --01. Map as foldl
---map' :: (c -> d) -> [c] -> [d]
---map' f (x:xs) = foldl'  : map' f xs
---  where foldl' :: (a -> b -> a) -> a -> [b] -> a
---        foldl' _ acc [] = acc
---        foldl' f acc (x:xs) = foldl f (f acc x) xs
---map' _ _ = []
 
---foldl :: ([d] -> c -> [d]) -> [d] -> [c] -> [d]
+--02. Filter as foldl
 
 --03. Quicksort
 quicksort :: Ord a => [a] -> [a]
@@ -50,14 +44,22 @@ unit elem dim = map f [0..dim-1]
 	where f pos = (take pos [0, 0..]) ++ [elem] ++ (take (dim-pos-1) [0, 0..])
 
 --11. Get the nth row and column of a matrix
+row :: Int -> [[a]] -> [a]
+row 0 (x:_) = x
+row n (x:xs) = row (n-1) xs
+row _ _ = []
 
 --12. Transpose a matrix
 
 --13. Sum of matrices
-
+sumMatrices :: Num a => [[a]] -> [[a]] -> [[a]]
 sumMatrices (x:xs) (y:ys) = zipWith (+) x y : sumMatrices xs ys
 sumMatrices _ _ = []
 
 --14. Multiply matrices
+-- probably wrong
+multMatrices :: Num a => [[a]] -> [[a]] -> [[a]]
+multMatrices (x:xs) (y:ys) = zipWith (*) x y : multMatrices xs ys
+multMatrices _ _ = []
 
 --15. Histogram
