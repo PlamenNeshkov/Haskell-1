@@ -233,10 +233,14 @@ concat' (_:[]) = []
 concat' (x:xs) = x ++ concat xs
 
 --49. Reducing
--- ???
+--reduce :: (a -> b -> a) -> a -> [b] -> a
+reduce _ acc [] = acc
+reduce f acc (x:xs) = reduce f (f acc x) xs
 
 --50. Reduce in the other direction
--- ???
+--reduce' :: (a -> b -> a) -> a -> [b] -> a
+reduce' _ acc [] = acc
+reduce' f acc (x:xs) = reduce' f (f x acc) xs
 
 --51. Zip with a function
 -- NOT WORKING
